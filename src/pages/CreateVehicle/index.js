@@ -23,7 +23,6 @@ const CreateVehicle = () => {
       history.push('/')
       return
     }
-    console.log(request)
     const error = translateCreateVehicleErrors(request.data.error.message)
     showErrorAlert(error)
   }

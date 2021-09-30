@@ -1,8 +1,6 @@
 import './style.css'
 import VerificationInput from "react-verification-input";
 
-
-
 const VehicleCode = ({value, onChange}) => (
   <div className="code-div">
     <div>

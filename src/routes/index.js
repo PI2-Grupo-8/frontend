@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Homepage from '../pages/HomePage'
 import CreateVehicle from '../pages/CreateVehicle'
+import UpdateVehicle from '../pages/UpdateVehicle'
 import './style.css'
 
 const Routes = () => {
@@ -12,7 +13,8 @@ const Routes = () => {
       <Navbar />
         <Switch>
           <Route path="/" exact component={Homepage} />
-          <Route path="/create_vehicle" exact component={CreateVehicle} />
+          <Route path="/vehicle/create" exact component={CreateVehicle} />
+          <Route path="/vehicle/edit/:id" exact component={UpdateVehicle} />
         </Switch>
       </BrowserRouter>
     </div>

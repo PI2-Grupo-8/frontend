@@ -2,7 +2,6 @@
   display: flex;
   align-self: center;
   justify-content: center;
-  height: 650px;
 }
 .form-div{
   width:50%;
@@ -32,5 +31,8 @@
   .btn{
     width: 100%;
     padding: 0px;
+  }
+  .around-form-div{
+    height: 650px;
   }
 }

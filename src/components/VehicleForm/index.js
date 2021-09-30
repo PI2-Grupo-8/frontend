@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './style.css'
 import { TextField, InputAdornment, FormControl, OutlinedInput } from '@mui/material';
-import { PurpleButton, RedButton } from '../ColorButtons';
-import { purple } from '../../constants/colors';
+import { PurpleButton, RedButton } from '../Buttons';
 import { useHistory } from 'react-router-dom';
 
 
-const VehicleForm = ({ edit, save, erase, disableButton }) => {
+const VehicleForm = ({ update, save, erase, disableButton, initialData }) => {
   const history = useHistory();
+
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [fertilizer, setFertilizer] = useState('')
@@ -18,9 +18,19 @@ const VehicleForm = ({ edit, save, erase, disableButton }) => {
   const [errorFertilizer, setErrorFertilizer] = useState(false)
   const [errorFAmount, setErrorFAmount] = useState(false)
 
+  useEffect(() => {
+    if(initialData) {
+      setName(initialData.name ?? '')
+      setDescription(initialData.description ?? '')
+      setFertilizer(initialData.fertilizer ?? '')
+      setFAmount(initialData.fertilizerAmount ?? '')
+    }
+  }, [initialData])
+
   const redButtonFunc = () => {
-    if(edit){
+    if(update && erase){
       erase()
+      return
     }
     history.push('/')
   }
@@ -86,14 +96,14 @@ const VehicleForm = ({ edit, save, erase, disableButton }) => {
               disabled={!name || !description || !fertilizer || !fAmount || disableButton}
               fullWidth
               onClick={() => save(name, description, fertilizer, fAmount)}>
-              { edit? 'Salvar' : 'Cadastrar' }
+              { update? 'Salvar' : 'Cadastrar' }
             </PurpleButton>
           </div>
           <div className="btn">
             <RedButton
               fullWidth
               onClick={redButtonFunc}>
-              {edit ? 'Apagar Veículo' : 'Cancelar' }
+              { update && erase ? 'Apagar Veículo' : 'Cancelar' }
             </RedButton>
           </div>
         </div>

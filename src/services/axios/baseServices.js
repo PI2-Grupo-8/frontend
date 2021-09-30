@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const { REACT_APP_VEHICLE_API } = process.env
+
 export const vehicleAPI = axios.create({
-  baseURL: 'http://localhost:3001/',
+  baseURL: REACT_APP_VEHICLE_API,
 });
