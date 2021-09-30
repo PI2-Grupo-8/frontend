@@ -50,6 +50,7 @@ const VehicleForm = ({ edit, save, erase, disableButton }) => {
             setErrorDescription(e.target.value ? false : true)
           }}
           multiline
+          maxRows={4}
           error={errorDescription}
           onFocus={(e) => { setErrorDescription(e.target.value ? false : true) }}
         />
