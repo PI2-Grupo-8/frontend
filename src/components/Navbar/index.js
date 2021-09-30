@@ -6,11 +6,13 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
-import './style.css'
+import { purple } from '../../constants/colors';
+
+
 const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" class="navbar">
+      <AppBar position="static" style={{ background: purple }}>
         <Toolbar>
           <IconButton
             size="large"
