@@ -4,7 +4,8 @@ Frontend do StrongBerry. Serviço responsável para ser o painel de controle do 
 
 ## Como rodar
 
-Para rodar o serviço do frontend, basta utilizar o comando abaixo.
+Crie um arquivo `.env` com as variaveis de `example.env` e rode com o comando abaixo
+
 
 ```
 docker-compose up
