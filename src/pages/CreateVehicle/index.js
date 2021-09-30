@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import './style.css'
 import VehicleForm from '../../components/VehicleForm';
-import VehicleCode from '../../components/VehicleCode';
+import VehicleCodeInput from '../../components/VehicleCodeInput';
 import { useState } from 'react';
 import { createVehicle } from '../../services/axios/vehicleService';
 import { useAlertContext } from '../../contexts/alertsContext';
@@ -31,7 +31,7 @@ const CreateVehicle = () => {
     <div className="page-container">
       <h1 className='title'>Novo Veículo</h1>
       <div className="verification-code">
-        <VehicleCode value={code} onChange={(value) => handleCodeInput(value)}/>
+        <VehicleCodeInput value={code} onChange={(value) => handleCodeInput(value)}/>
       </div>
       <VehicleForm save={createNewVehicle} disableButton={code.length < 4}/>
     </div>

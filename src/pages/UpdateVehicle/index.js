@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { updateVehicle, getVehicleByID, deleteVehicle } from '../../services/axios/vehicleService';
 import { useAlertContext } from '../../contexts/alertsContext';
 import ConfirmDialog from '../../components/ConfirmDialog';
+import VehicleCode from '../../components/VehicleCode';
 
 const UpdateVehicle = () => {
   const { id } = useParams();
@@ -44,6 +45,9 @@ const UpdateVehicle = () => {
   return (
     <div className="page-container">
       <h1 className='title'>Editar Veículo</h1>
+      <div className="verification-code">
+        <VehicleCode code={initialVehicle?.code} />
+      </div>
       <VehicleForm save={saveVehicle} initialData={initialVehicle} update erase={() => setDeleteVehicle(true)}/>
       <ConfirmDialog
         title="Deseja deletar esse veículo?"
