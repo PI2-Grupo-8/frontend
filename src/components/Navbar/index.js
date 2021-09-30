@@ -12,7 +12,7 @@ import { purple } from '../../constants/colors';
 const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: purple }}>
+      <AppBar position="fixed" style={{ background: purple }}>
         <Toolbar>
           <IconButton
             size="large"

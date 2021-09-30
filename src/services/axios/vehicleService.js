@@ -12,12 +12,8 @@ export const createVehicle = async (
       fertilizer,
       fertilizerAmount
     });
-    console.log(response)
-
-    return response;
+    return { success: true, data: response.data };
   } catch (error) {
-    console.log(error)
-    window.alert(error);
+    return { success: false, data: error.response.data };
   }
-  return false;
 }

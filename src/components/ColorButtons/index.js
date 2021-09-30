@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { purple, red } from '../../constants/colors';
+import { grey, purple, red } from '../../constants/colors';
 
 export const PurpleButton = styled(Button)(({ theme }) => ({
   color: 'white',
@@ -8,6 +8,9 @@ export const PurpleButton = styled(Button)(({ theme }) => ({
   '&:hover': {
     backgroundColor: purple,
   },
+  '&:disabled': {
+    backgroundColor: grey,
+  }
 }));
 
 export const RedButton = styled(Button)(({ theme }) => ({
@@ -16,5 +19,8 @@ export const RedButton = styled(Button)(({ theme }) => ({
   '&:hover': {
     backgroundColor: red,
   },
+  '&:disabled': {
+    backgroundColor: grey,
+  }
 }));
 

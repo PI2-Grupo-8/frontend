@@ -1,18 +1,31 @@
+import { useHistory } from 'react-router-dom';
 import './style.css'
 import VehicleForm from '../../components/VehicleForm';
 import VehicleCode from '../../components/VehicleCode';
 import { useState } from 'react';
 import { createVehicle } from '../../services/axios/vehicleService';
+import { useAlertContext } from '../../contexts/alertsContext';
+import { translateCreateVehicleErrors } from '../../utils/errorsTranslator'
 
 const CreateVehicle = () => {
+  const history = useHistory();
+  const { showSuccessAlert, showErrorAlert } = useAlertContext()
   const [code, setCode] = useState('')
 
   const handleCodeInput = (value) => {
     setCode(value.toUpperCase())
   }
 
-  const createNewVehicle = (name, description, fertilizer, fAmount) => {
-    createVehicle(name, description, fertilizer, fAmount, code)
+  const createNewVehicle = async (name, description, fertilizer, fAmount) => {
+    const request = await createVehicle(name, description, fertilizer, fAmount, code)
+    if (request.success){
+      showSuccessAlert('Veículo criado')
+      history.push('/')
+      return
+    }
+    console.log(request)
+    const error = translateCreateVehicleErrors(request.data.error.message)
+    showErrorAlert(error)
   }
 
   return (
@@ -21,7 +34,7 @@ const CreateVehicle = () => {
       <div className="verification-code">
         <VehicleCode value={code} onChange={(value) => handleCodeInput(value)}/>
       </div>
-      <VehicleForm save={createNewVehicle}/>
+      <VehicleForm save={createNewVehicle} disableButton={code.length < 4}/>
     </div>
   );
 };
