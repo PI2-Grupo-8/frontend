@@ -17,12 +17,6 @@ import { GoAlert } from "react-icons/go";
 const VehicleCard = ({ vehicle }) =>  {
   moment.locale("pt-br");
 
-  // TODO: Get alets by vehicle
-  // Definições: Ultima atualização é o tempo do ultimo dado de sensor enviado?
-  // Como saberemos se o trator está em funcionamento no momento?
-
-
-
   return (
     <Card sx={{ width: 350, margin: 1, background: purple, color: white }}>
       <CardActionArea>

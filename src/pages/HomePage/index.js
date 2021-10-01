@@ -24,7 +24,7 @@ const HomePage = () => {
       showErrorAlert('Ocorreu um erro ao buscar veículos')
     }
     getVehiclesList()
-  })
+  }, [])
 
   return (
     <div className="page-container">
