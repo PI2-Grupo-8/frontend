@@ -56,3 +56,16 @@ export const deleteVehicle = async (id) => {
     return { success: false, data: error.response.data };
   }
 }
+
+export const getVehiclesByUser = async () => {
+  const userID = "61411790de1c603fc8596ea9"
+  try {
+    const response = await vehicleAPI.get(`vehicles/owner/${userID}`)
+
+    if (!response.data) throw Error;
+
+    return { success: true, data: response.data }
+  } catch (error) {
+    return { success: false, data: error.response };
+  }
+}

@@ -3,20 +3,16 @@
   color: var(--purple);
   font-size: 40px;
   padding-left: 200px;
-
-}
-
-.verification-code{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 20px;
-  padding-top: 20px;
 }
 
 .page-container{
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.cards{
+  display: flex;
+  flex-direction: row;
 }
 
 @media only screen and (max-width: 768px){
