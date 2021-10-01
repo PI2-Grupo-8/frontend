@@ -1,0 +1,40 @@
+.title{
+  font: var(--font);
+  color: var(--purple);
+  font-size: 40px;
+  padding-left: 200px;
+}
+
+.page-container{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.add-button{
+  margin: 0px;
+  top: auto;
+  right: 20px;
+  bottom: 20px;
+  left: auto;
+  position: fixed;
+};
+
+@media only screen and (max-width: 768px){
+  .cards{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .title{
+    font-size: 30px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}

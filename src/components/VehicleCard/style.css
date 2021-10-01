@@ -1,0 +1,54 @@
+.card-title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.vehicle-name{
+  font: var(--font);
+  color: var(--white);
+  font-size: 25px;
+  margin-right: 10px;
+  max-width: 200px;
+}
+
+.data-icons{
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  justify-content: space-between;
+  align-items:flex-end;
+  align-self: flex-start;
+}
+
+.card-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.percentage{
+  margin-right: 5px;
+}
+
+.card-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 768px){
+  .data-icons{
+    flex-direction: row;
+  }
+  .percentage{
+    display: none;
+  }
+}
