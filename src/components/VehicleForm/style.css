@@ -1,0 +1,38 @@
+.around-form-div{
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+.form-div{
+  width:50%;
+}
+
+.buttons{
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.btn{
+  width: 20%;
+  margin: 10px;
+}
+
+@media only screen and (max-width: 768px){
+  .form-div{
+    width:100%;
+  }
+  .buttons{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    flex-direction: column;
+  }
+  .btn{
+    width: 100%;
+    padding: 0px;
+  }
+  .around-form-div{
+    height: 650px;
+  }
+}

@@ -1,9 +1,12 @@
 import './App.css';
 import Routes from './routes';
+import AlertProvider from './contexts/alertsContext';
 
 function App() {
   return (
-    <Routes />
+    <AlertProvider>
+      <Routes />
+    </AlertProvider>
   );
 }
 

@@ -9,6 +9,7 @@ services:
     volumes:
       - ./:/code/
       - node_modules:/code/node_modules
+    env_file: .env
 
 volumes:
   node_modules:
