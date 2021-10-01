@@ -10,8 +10,8 @@ import 'moment/locale/pt-br'
 import './style.css'
 
 import { BsFillCircleFill } from "react-icons/bs";
-import { RiOilFill } from "react-icons/ri";
 import { GoAlert } from "react-icons/go";
+import Fertilizer from '../Fertilizer';
 
 
 const VehicleCard = ({ vehicle }) =>  {
@@ -35,7 +35,7 @@ const VehicleCard = ({ vehicle }) =>  {
               </div>
               <div className="info">
                 <p className="percentage">100%</p>
-                <RiOilFill color={green} size={20} />
+                <Fertilizer percentage={100}/>
               </div>
             </div>
           </div>
