@@ -6,7 +6,6 @@ import { getVehiclesByUser } from '../../services/axios/vehicleService';
 import './style.css'
 import Fab from '@mui/material/Fab';
 import { MdAdd } from "react-icons/md";
-import Box from '@mui/material/Box';
 import { green, white } from '../../constants/colors';
 
 const HomePage = () => {
