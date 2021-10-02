@@ -48,7 +48,6 @@ const VehicleForm = ({ update, save, erase, disableButton, initialData }) => {
             setErrorName(e.target.value ? false : true)
           }}
           error={errorName}
-          onFocus={(e) => { setErrorName(e.target.value ? false : true) }}
         />
         <p>Descrição:</p>
         <TextField
@@ -62,7 +61,6 @@ const VehicleForm = ({ update, save, erase, disableButton, initialData }) => {
           multiline
           maxRows={4}
           error={errorDescription}
-          onFocus={(e) => { setErrorDescription(e.target.value ? false : true) }}
         />
         <p>Fertilizante a ser aplicado:</p>
         <TextField
@@ -74,7 +72,6 @@ const VehicleForm = ({ update, save, erase, disableButton, initialData }) => {
             setErrorFertilizer(e.target.value ? false : true)
           }}
           error={errorFertilizer}
-          onFocus={(e) => { setErrorFertilizer(e.target.value ? false : true) }}
         />
         <p>Quantidade de fertilizante por planta:</p>
         <FormControl fullWidth variant="outlined">
@@ -87,7 +84,7 @@ const VehicleForm = ({ update, save, erase, disableButton, initialData }) => {
             endAdornment={<InputAdornment position="end">ml</InputAdornment>}
             type="number"
             error={errorFAmount}
-            onFocus={(e) => { setErrorFAmount(e.target.value ? false : true) }}
+
           />
         </FormControl>
         <div className="buttons">

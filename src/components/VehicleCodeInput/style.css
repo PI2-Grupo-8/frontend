@@ -17,7 +17,7 @@
 }
 
 .character--selected {
-  /* border: 1px solid white; */
+  border: 2px solid var(--purple);
 }
 
 .code-title{
