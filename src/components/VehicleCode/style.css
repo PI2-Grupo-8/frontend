@@ -1,0 +1,26 @@
+
+.code-title{
+  color: var(--purple);
+  font: var(--font);
+}
+
+.code{
+  color: var(--purple);
+  font: var(--font);
+  font-size: 60px;
+  margin: 0px;
+}
+
+.show-code{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+
+@media only screen and (max-width: 768px){
+  .code{
+    font-size: 40px;
+  }
+}

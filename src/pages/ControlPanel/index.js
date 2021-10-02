@@ -1,6 +1,9 @@
 import React from 'react';
-import { BsFillGearFill, BsFillVolumeUpFill, BsPower } from "react-icons/bs";
+import { BsGear, BsVolumeUp, BsPower } from "react-icons/bs";
+import { FiRefreshCcw } from 'react-icons/fi';
 import Chart from "react-apexcharts";
+
+import Battery from '../../components/Battery';
 
 const Card = () => (
     <>
@@ -24,19 +27,28 @@ const ControlPanel = () => {
         <div style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            marginTop: -10
         }}>
-            <div>
-                <div>
-                    <BsFillGearFill />
-                    <BsFillVolumeUpFill />
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '85%' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <BsGear style={{ fontSize: 30, color: '#5603AD', fontWeight: 'bold', marginRight: 10 }} />
+                    <BsVolumeUp style={{ fontSize: 30, color: '#5603AD', fontWeight: 'bold' }} />
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <span>100%</span>
+                    <Battery size={30} color='#5FAD56' style={{ marginLeft: 5, marginRight: 5 }} />
+                    <span>63%</span>
+                    <Battery size={30} color='#5FAD56' style={{ marginLeft: 5 }} />
                 </div>
             </div>
             <Card />
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                 <h3 style={{ fontWeight: 'normal', color: '#5603AD' }}>Ultima distância percorrida: 1km</h3>
-                <h3 style={{ fontWeight: 'normal', color: '#5603AD' }}>Ultima atualização: Hoje ás 06:49</h3>
-
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <h3 style={{ fontWeight: 'normal', color: '#5603AD' }}>Ultima atualização: Hoje ás 06:49</h3>
+                    <FiRefreshCcw style={{marginLeft: 10}} size={20} color="#5603AD"/>
+                </div>
                 <div style={{ backgroundColor: '#5603AD', width: "100%", height: 1 }} />
 
                 <h2 style={{ fontWeight: 'normal', color: '#5603AD' }} >Fertilizante: Exemplo</h2>
