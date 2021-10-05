@@ -19,15 +19,15 @@ const DescriptionCard = () => (
                 <h3>Descrição do veiculo</h3>
             </div>
         </div>
-        <BsPower className="on-off-icon" />
+        <BsPower onClick={() => {}} className="on-off-icon" />
     </Card>
 )
 
 const Header = () => (
     <div className="header-container">
         <div>
-            <BsGear className="header-icon lateral-space" />
-            <BsVolumeUp className="header-icon" />
+            <BsGear onClick={() => {}} className="header-icon lateral-space" />
+            <BsVolumeUp onClick={() => {}} className="header-icon" />
         </div>
         <div>
             <span>100%</span>
@@ -98,8 +98,8 @@ const ControlPanel = () => {
             <div className="vehicle-info" >
                 <Header />
                 <DescriptionCard />
-                <div className="vehicle-info-container-mobile">
-                    <h3 className="vehicle-last-update">Ultima atualização: Hoje ás 06:49 <FiRefreshCcw size={20} color="#5603AD" /></h3>
+                <div className="vehicle-info-container-desktop">
+                    <h3 className="vehicle-last-update">Ultima atualização: Hoje ás 06:49 <FiRefreshCcw size={20} color="#5603AD" onClick={() => {}}/></h3>
                     <div className='fuel-level'>
                         <span><Battery size={30} color='#5FAD56' className="battery-icon" /><h4>Bateria: 100%</h4></span>
                         <span><Fertilizer width={30} /><h4>Fertilizante: 60%</h4></span>
@@ -110,9 +110,9 @@ const ControlPanel = () => {
                     <h2>Fertilizante: Exemplo</h2>
                     <h3>Quantidade de uso por planta: 10ml</h3>
                 </div>
-                <div className="vehicle-info-container">
+                <div className="vehicle-info-container-mobile">
                     <h3>Ultima distância percorrida: 1km</h3>
-                    <h3 className="vehicle-last-update">Ultima atualização: Hoje ás 06:49 <FiRefreshCcw size={20} color="#5603AD" /></h3>
+                    <h3 className="vehicle-last-update">Ultima atualização: Hoje ás 06:49 <FiRefreshCcw size={20} color="#5603AD" onClick={() => {}}/></h3>
                     <div className="separator" />
                     <h2>Fertilizante: Exemplo</h2>
                     <h3>Quantidade de uso por planta: 10ml</h3>
@@ -120,8 +120,8 @@ const ControlPanel = () => {
             </div>
             <div className="charts-container">
                 <div className="header-desktop">
-                    <h4><BsGear className="header-icon lateral-space" /> Configurações</h4>
-                    <h4><BsVolumeUp className="header-icon" /> Emitir sinal sonoro</h4>
+                    <h4 onClick={() => {}}><BsGear className="header-icon lateral-space" /> Configurações</h4>
+                    <h4 onClick={() => {}}><BsVolumeUp className="header-icon" /> Emitir sinal sonoro</h4>
                 </div>
                 <Charts />
             </div>

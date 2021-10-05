@@ -9,18 +9,20 @@
     margin-top: 1%;
 }
 
-.vehicle-info-container {
-    margin-left: 5%;
-}
-
 .vehicle-info-container-mobile {
     margin-left: 5%;
+    display: none;
+    flex-direction: column;
 }
 
+.vehicle-info-container-desktop {
+    margin-left: 5%;
+}
+
+.vehicle-info-container-desktop > h2,
+.vehicle-info-container-desktop > h3,
 .vehicle-info-container-mobile > h2,
-.vehicle-info-container-mobile > h3,
-.vehicle-info-container > h2,
-.vehicle-info-container > h3
+.vehicle-info-container-mobile > h3
 {
     color: var(--purple);
 }
@@ -168,7 +170,7 @@
         display: none;
     }
 
-    .vehicle-info-container-mobile {
+    .vehicle-info-container-desktop {
         display: none;
     }
 
@@ -195,5 +197,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .vehicle-info-container-mobile {
+        display: flex;
     }
 }

@@ -3,7 +3,7 @@ import { AiFillWarning } from 'react-icons/ai';
 
 import './style.css'
 
-const ActiveAlert = () => (
+const ActiveAlert = ({ onClick }) => (
     <div className="alert-card alert-active-card">
         <div className="alert-card-content">
             <h2>
@@ -11,10 +11,10 @@ const ActiveAlert = () => (
             </h2>
             <h5>há 10 minutos</h5>
         </div>
-        <div className="finish-alert-button">
+        <div className="finish-alert-button" onClick={onClick ? onClick : () => {}}>
             <h3>Finalizar<br />alerta</h3>
         </div>
-    </div>
+    </div >
 )
 
 export default ActiveAlert;
