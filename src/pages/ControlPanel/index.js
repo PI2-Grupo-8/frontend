@@ -2,105 +2,137 @@ import React from 'react';
 import { BsGear, BsVolumeUp, BsPower } from "react-icons/bs";
 import { FiRefreshCcw } from 'react-icons/fi';
 import Chart from "react-apexcharts";
+import Card from '@mui/material/Card';
 
+import './style.css'
 import Battery from '../../components/Battery';
+import Fertilizer from '../../components/Fertilizer';
+import ActiveAlert from '../../components/Alerts/ActiveAlert';
+import InactiveAlert from '../../components/Alerts/InactiveAlert';
 
-const Card = () => (
+const DescriptionCard = () => (
+    <Card className="card-container">
+        <div className="description">
+            <div className="vehicle-status" />
+            <div className="description-content">
+                <h1>Nome</h1>
+                <h3>Descrição do veiculo</h3>
+            </div>
+        </div>
+        <BsPower className="on-off-icon" />
+    </Card>
+)
+
+const Header = () => (
+    <div className="header-container">
+        <div>
+            <BsGear className="header-icon lateral-space" />
+            <BsVolumeUp className="header-icon" />
+        </div>
+        <div>
+            <span>100%</span>
+            <Battery size={30} color='#5FAD56' className="battery-icon" />
+            <span>63%</span>
+            <Fertilizer />
+        </div>
+    </div>
+)
+
+
+const Charts = () => (
     <>
-        <div style={{ margin: 5, borderColor: '#5603AD', borderStyle: 'solid', borderRadius: 10, borderWidth: 1, display: 'flex', justifyContent: 'space-between', padding: 10, width: '80%' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <div style={{ backgroundColor: '#5FAD56', height: 20, width: 20, borderRadius: 50, marginRight: 10 }} />
-                <div>
-                    <h1 style={{ margin: 5, fontWeight: 'initial', color: '#5603AD' }}>Nome</h1>
-                    <h3 style={{ margin: 5, fontWeight: 'initial', color: '#5603AD' }}>Descrição do veiculo</h3>
-                </div>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', margin: 10 }}>
-                <BsPower style={{ fontSize: 45, color: '#5603AD', fontWeight: 'bold' }} />
-            </div>
+        <h2 className="chart-title">Utilização de Fertilizante</h2>
+        <div>
+            <Chart
+                options={{
+                    markers: {
+                        size: 4,
+                    },
+                    chart: {
+                        id: "basic-bar"
+                    },
+                    xaxis: {
+                        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+                    }
+                }}
+                series={[
+                    {
+                        name: "series-1",
+                        data: [30, 40, 45, 50, 49, 60, 70, 91]
+                    }
+                ]}
+                type="line"
+                width="80%"
+            />
+        </div>
+        <h2 className="chart-title">Utilização de Bateria</h2>
+        <div>
+            <Chart
+                options={{
+                    markers: {
+                        size: 4,
+                    },
+                    chart: {
+                        id: "basic-bar"
+                    },
+                    xaxis: {
+                        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+                    }
+                }}
+                series={[
+                    {
+                        name: "series-1",
+                        data: [30, 40, 45, 50, 49, 60, 70, 91]
+                    }
+                ]}
+                type="line"
+                width="80%"
+            />
         </div>
     </>
 )
 
 const ControlPanel = () => {
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            marginTop: -10
-        }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '85%' }}>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <BsGear style={{ fontSize: 30, color: '#5603AD', fontWeight: 'bold', marginRight: 10 }} />
-                    <BsVolumeUp style={{ fontSize: 30, color: '#5603AD', fontWeight: 'bold' }} />
+        <div className="vehicle-container">
+            <div className="vehicle-info" >
+                <Header />
+                <DescriptionCard />
+                <div className="vehicle-info-container-mobile">
+                    <h3 className="vehicle-last-update">Ultima atualização: Hoje ás 06:49 <FiRefreshCcw size={20} color="#5603AD" /></h3>
+                    <div className='fuel-level'>
+                        <span><Battery size={30} color='#5FAD56' className="battery-icon" /><h4>Bateria: 100%</h4></span>
+                        <span><Fertilizer width={30} /><h4>Fertilizante: 60%</h4></span>
+                    </div>
+                    <h2>Distância</h2>
+                    <h3>Ultima distância percorrida: 1km</h3>
+                    <br />
+                    <h2>Fertilizante: Exemplo</h2>
+                    <h3>Quantidade de uso por planta: 10ml</h3>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <span>100%</span>
-                    <Battery size={30} color='#5FAD56' style={{ marginLeft: 5, marginRight: 5 }} />
-                    <span>63%</span>
-                    <Battery size={30} color='#5FAD56' style={{ marginLeft: 5 }} />
+                <div className="vehicle-info-container">
+                    <h3>Ultima distância percorrida: 1km</h3>
+                    <h3 className="vehicle-last-update">Ultima atualização: Hoje ás 06:49 <FiRefreshCcw size={20} color="#5603AD" /></h3>
+                    <div className="separator" />
+                    <h2>Fertilizante: Exemplo</h2>
+                    <h3>Quantidade de uso por planta: 10ml</h3>
                 </div>
             </div>
-            <Card />
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                <h3 style={{ fontWeight: 'normal', color: '#5603AD' }}>Ultima distância percorrida: 1km</h3>
-                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <h3 style={{ fontWeight: 'normal', color: '#5603AD' }}>Ultima atualização: Hoje ás 06:49</h3>
-                    <FiRefreshCcw style={{marginLeft: 10}} size={20} color="#5603AD"/>
+            <div className="charts-container">
+                <div className="header-desktop">
+                    <h4><BsGear className="header-icon lateral-space" /> Configurações</h4>
+                    <h4><BsVolumeUp className="header-icon" /> Emitir sinal sonoro</h4>
                 </div>
-                <div style={{ backgroundColor: '#5603AD', width: "100%", height: 1 }} />
-
-                <h2 style={{ fontWeight: 'normal', color: '#5603AD' }} >Fertilizante: Exemplo</h2>
-                <h3 style={{ fontWeight: 'normal', color: '#5603AD' }} >Quantidade de uso por planta: 10ml</h3>
-                <h2 style={{ fontWeight: 'normal', color: '#5603AD' }} >Utilização de Fertilizante</h2>
-                <div>
-                    <Chart
-                        options={{
-                            markers: {
-                                size: 4,
-                            },
-                            chart: {
-                                id: "basic-bar"
-                            },
-                            xaxis: {
-                                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-                            }
-                        }}
-                        series={[
-                            {
-                                name: "series-1",
-                                data: [30, 40, 45, 50, 49, 60, 70, 91]
-                            }
-                        ]}
-                        type="line"
-                        width="100%"
-                    />
-                </div>
-                <h2 style={{ fontWeight: 'normal', color: '#5603AD' }} >Utilização de Bateria</h2>
-                <div>
-                    <Chart
-                        options={{
-                            markers: {
-                                size: 4,
-                            },
-                            chart: {
-                                id: "basic-bar"
-                            },
-                            xaxis: {
-                                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-                            }
-                        }}
-                        series={[
-                            {
-                                name: "series-1",
-                                data: [30, 40, 45, 50, 49, 60, 70, 91]
-                            }
-                        ]}
-                        type="line"
-                        width="100%"
-                    />
-                </div>
+                <Charts />
+            </div>
+            <div className="alerts-container">
+                <h2>Alertas</h2>
+                <ActiveAlert />
+                <ActiveAlert />
+                <div className="separator" />
+                <h2 className="history">Histórico de Alertas</h2>
+                <InactiveAlert />
+                <InactiveAlert />
             </div>
         </div>
     );
