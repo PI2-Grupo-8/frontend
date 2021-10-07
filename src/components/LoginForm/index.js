@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { IconButton, InputAdornment, TextField, OutlinedInput, FormControl } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { PurpleButton } from '../../components/Buttons';
+import { PurpleButton, WhiteButton } from '../../components/Buttons';
 import { login } from '../../services/axios/userService';
 import { useAlertContext } from '../../contexts/alertsContext';
 import { saveToken } from '../../services/auth';
@@ -74,6 +74,10 @@ const LoginForm = () => {
               <PurpleButton
                 fullWidth
                 onClick={save}>Login</PurpleButton>
+              <WhiteButton
+                fullWidth
+                onClick={() => history.push('/')}>
+                Cadastrar</WhiteButton>
             </div>
           </form>
         </div>
