@@ -1,0 +1,35 @@
+#email-field{
+  margin-bottom: 36px;
+}
+
+.MuiFormControl-root, .MuiButton-root   {
+  border-radius: 8px;
+  max-width: 298px;
+}
+
+form{
+  margin-top: -32px;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+.MuiButton-textPrimary{
+  margin-top: 32px;
+}
+
+.register-btn .MuiButton-root {
+  color: #8367C7;
+  margin-top: 16px;
+  border: 1px solid #8367C7;
+}
+
+.forgot-password{
+  color: #8367C7;
+  margin-top: 16px;
+}
+
+#password-field{
+  margin-bottom: 32px;
+}

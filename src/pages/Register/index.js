@@ -6,6 +6,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { PurpleButton } from '../../components/Buttons';
 import { createUser } from '../../services/axios/userService';
 import { useAlertContext } from '../../contexts/alertsContext';
+import { saveToken } from '../../services/auth';
 
 const Register = () => {
   const [nome, setNome] = useState("");
@@ -19,8 +20,9 @@ const Register = () => {
   const save = async () => {
     const request = await createUser(nome, email, senha);
     if (request.success) {
-      showSuccessAlert('Usuário criado.')
-      history.push('/')
+      showSuccessAlert('Usuário criado.');
+      saveToken(request.data);
+      history.push('/');
       return
     }
     showErrorAlert('Ocorreu um erro ao criar o usuário')

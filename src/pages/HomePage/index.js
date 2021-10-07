@@ -8,6 +8,7 @@ import './style.css'
 import Fab from '@mui/material/Fab';
 import { MdAdd } from "react-icons/md";
 import { green, white } from '../../constants/colors';
+import { isAuthenticated } from '../../services/auth';
 
 const HomePage = () => {
   const [vehicles, setVehicles] = useState([])
@@ -16,12 +17,12 @@ const HomePage = () => {
 
   useEffect(() => {
     const getVehiclesList = async () => {
-      const request = await getVehiclesByUser()
+      const request = isAuthenticated() && await getVehiclesByUser();
       if (request.success) {
         setVehicles(request.data)
         return
       }
-      showErrorAlert('Ocorreu um erro ao buscar veículos')
+      else isAuthenticated() && showErrorAlert('Ocorreu um erro ao buscar veículos')
     }
     getVehiclesList()
   }, [])
@@ -48,10 +49,9 @@ const HomePage = () => {
       </Fab>
     </div>
   </div>);
-
   return (
     <>
-      {isAuthenticated() ? <LoginForm /> : loggedHomePage()}
+      {isAuthenticated() ? loggedHomePage : <LoginForm />}
     </>
   );
 };

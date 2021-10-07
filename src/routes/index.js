@@ -7,13 +7,29 @@ import UpdateVehicle from '../pages/UpdateVehicle'
 import './style.css'
 import Register from '../pages/Register';
 import { isAuthenticated } from '../services/auth';
+import EditProfile from '../pages/EditProfile';
+import ForgotPassword from '../pages/ForgotPassword';
+import ResetPassword from '../pages/ResetPassword';
 
-const PrivateRoute = ({ component, ...rest }) => (
+const PrivateRoute = ({ Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
       isAuthenticated() ? (
-        <component {...props} />
+        <Component {...props} />
+      ) : (
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+      )
+    }
+  />
+);
+
+const PublicOnlyRoute = ({ Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      !isAuthenticated() ? (
+        <Component {...props} />
       ) : (
         <Redirect to={{ pathname: "/", state: { from: props.location } }} />
       )
@@ -29,8 +45,11 @@ const Routes = () => {
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/signup" exact component={Register} />
-          <PrivateRoute path="/vehicle/create" exact component={CreateVehicle} />
-          <PrivateRoute path="/vehicle/edit/:id" exact component={UpdateVehicle} />
+          <PublicOnlyRoute path="/forgotpassword" exact component={ForgotPassword} />
+          <PublicOnlyRoute path="/auth/reset_password" exact component={ResetPassword} />
+          <PrivateRoute path="/profile" exact Component={EditProfile} />
+          <PrivateRoute path="/vehicle/create" exact Component={CreateVehicle} />
+          <PrivateRoute path="/vehicle/edit/:id" exact Component={UpdateVehicle} />
         </Switch>
       </BrowserRouter>
     </div>
