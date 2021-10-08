@@ -127,12 +127,24 @@ const ControlPanel = () => {
             </div>
             <div className="alerts-container">
                 <h2>Alertas</h2>
-                <ActiveAlert />
-                <ActiveAlert />
+                <ActiveAlert alert={{
+                    type: 'stuck_vehicle',
+                    createdAt: new Date()
+                }} />
+                <ActiveAlert alert={{
+                    type: 'stuck_vehicle',
+                    createdAt: new Date()
+                }} />
                 <div className="separator" />
                 <h2 className="history">Histórico de Alertas</h2>
-                <InactiveAlert />
-                <InactiveAlert />
+                <InactiveAlert alert={{
+                    type: 'stuck_vehicle',
+                    createdAt: new Date()
+                }}/>
+                <InactiveAlert alert={{
+                    type: 'stuck_vehicle',
+                    createdAt: new Date()
+                }}/>
             </div>
         </div>
     );
