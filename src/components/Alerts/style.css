@@ -1,0 +1,82 @@
+.alert-card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 80%;
+    border-radius: 10px;
+    margin: 2%;
+}
+
+.alert-active-card {
+    border: 2px solid var(--yellow);
+    overflow: hidden;
+    max-height: 10vh;
+}
+
+.alert-inactive-card {
+    border: 2px solid grey;
+    opacity: 0.5;
+    border-radius: 10px;
+}
+
+.alert-card-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 5%;
+}
+
+.alert-card-content > h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    font-size: 1.3em;
+    margin-bottom: 4%;
+    text-align: center;
+}
+
+.alert-card-content > h2 > svg:first-child {
+    margin-right: 4px;
+}
+
+.alert-card-content > h5 {
+    margin-bottom: 1%;
+    margin-top: 0;
+    margin-bottom: 4%;
+}
+
+.finish-alert-button {
+    background-color: var(--yellow);
+    padding: 5%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.finish-alert-button > h3 {
+    text-align: center;
+    color: white;
+    font-size: 1em;
+}
+
+.alert-separator {
+    background-color: var(--purple);
+    width: 80%;
+    height: 1px;
+    margin-top: 5%;
+}
+
+@media screen and (max-width: 1100px){
+    .alert-card-content > h2 > svg:first-child {
+        margin-right: 2px;
+    }
+
+    .alert-card-content > h2 {
+        font-size: 1em;
+    }
+}

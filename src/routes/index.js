@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar';
 import Homepage from '../pages/HomePage'
 import CreateVehicle from '../pages/CreateVehicle'
 import UpdateVehicle from '../pages/UpdateVehicle'
+import ControlPanel from '../pages/ControlPanel';
+import Alerts from '../pages/Alerts';
 import './style.css'
 
 const Routes = () => {
@@ -15,6 +17,8 @@ const Routes = () => {
           <Route path="/" exact component={Homepage} />
           <Route path="/vehicle/create" exact component={CreateVehicle} />
           <Route path="/vehicle/edit/:id" exact component={UpdateVehicle} />
+          <Route path="/vehicle/:id" exact component={ControlPanel} />
+          <Route path="/alerts" exact component={Alerts} />
         </Switch>
       </BrowserRouter>
     </div>

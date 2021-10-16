@@ -1,0 +1,15 @@
+.alert-container-title {
+    padding-left: 8%;
+    color: var(--purple);
+}
+
+.alert-list { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.alert-history-title {
+    color: gray;
+}
