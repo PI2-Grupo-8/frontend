@@ -69,3 +69,13 @@ export const getVehiclesByUser = async () => {
     return { success: false, data: error.response };
   }
 }
+
+export const getWorkingVehicle = async (id) => {
+  try {
+    const response = await vehicleAPI.get(`works/${id}`)
+
+    return { success: true, data: response.data }
+  } catch (error) {
+    return { success: false, data: error.response };
+  }
+}
