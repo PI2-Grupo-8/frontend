@@ -1,0 +1,205 @@
+.vehicle-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+.vehicle-info {
+    width: 30vw;
+    margin-top: 1%;
+}
+
+.vehicle-info-container-mobile {
+    margin-left: 5%;
+    display: none;
+    flex-direction: column;
+}
+
+.vehicle-info-container-desktop {
+    margin-left: 5%;
+}
+
+.vehicle-info-container-desktop > h2,
+.vehicle-info-container-desktop > h3,
+.vehicle-info-container-mobile > h2,
+.vehicle-info-container-mobile > h3
+{
+    color: var(--purple);
+}
+
+.vehicle-last-update {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.vehicle-last-update > svg {
+    margin-left: 2%;
+}
+
+.charts-container {
+    width: 30vw;
+    max-width: 30vw;
+}
+
+.header-desktop {
+    display: flex;
+    justify-content: center;
+}
+
+.charts-container > div > h4 {
+    display: flex;
+    align-items: center;
+    margin-right: 5%;
+    color: var(--purple);
+}
+
+.alerts-container {
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-left: 1px solid var(--purple);
+}
+
+.alerts-container > h2:first-child {
+    margin-bottom: 5%;
+    color: #5603AD;
+}
+
+.alerts-container > .history {
+    margin-bottom: 5%;
+    color: gray;
+}
+
+.separator {
+    background-color: var(--purple);
+    width: 80%;
+    height: 1px;
+    margin: 5%;
+}
+
+.card-container {
+    margin: 5px;
+    border: 1px solid var(--purple);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vehicle-status {
+    background-color: var(--green);
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+
+.description-content > h1, .description-content > h3 {
+    margin: 5px;
+    color: var(--purple);
+    font-weight: initial;
+}
+
+.on-off-icon {
+    font-size: 45px;
+    font-weight: bold;
+    margin: 10px;
+    color: var(--purple);
+}
+
+.header-icon {
+    font-size: 30px;
+    color: var(--purple);
+    font-weight: bold;
+}
+
+.lateral-space {
+    margin-right: 10px;
+}
+
+
+.battery-icon {
+    margin: 0 5px 0 5px;
+}
+
+.fuel-level > span {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.fuel-level > span > h4 {
+    margin-left: 5px;
+}
+
+.fuel-level {
+    margin-bottom: 20%;
+}
+
+.header-container {
+    display: none;
+}
+
+.chart-title {
+    color: var(--purple);
+    font-weight: normal;
+}
+
+@media screen and (max-width: 800px){
+
+    .vehicle-container{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .vehicle-info {
+        width: 90%;
+    }
+
+    .alerts-container {
+        display: none;
+    }
+
+    .vehicle-info-container-desktop {
+        display: none;
+    }
+
+    .header-desktop {
+        display: none;
+    }
+
+    .charts-container {
+        width: 80%;
+        max-width: none;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-container > div:nth-child(2) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .vehicle-info-container-mobile {
+        display: flex;
+    }
+}
