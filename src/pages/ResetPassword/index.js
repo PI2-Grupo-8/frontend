@@ -42,11 +42,10 @@ const ResetPassword = () => {
   }
 
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" className="reset-password-wrapper">
       <Grid>
-        <h1 className='title'>Editar Usuário</h1>
+        <h1 className='title'>Alterar senha</h1>
         <form>
-          <h3>Alterar senha</h3>
           <p>Nova Senha:</p>
           <FormControl fullWidth variant="outlined">
             <OutlinedInput
@@ -70,7 +69,6 @@ const ResetPassword = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              label="Password"
             />
           </FormControl>
           <FormControl fullWidth variant="outlined">
@@ -97,7 +95,6 @@ const ResetPassword = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              label="Password"
             />
           </FormControl>
           <div className="btn">

@@ -8,6 +8,8 @@ import { createUser } from '../../services/axios/userService';
 import { useAlertContext } from '../../contexts/alertsContext';
 import { saveToken } from '../../services/auth';
 
+import "./index.css"
+
 const Register = () => {
   const [nome, setNome] = useState("");
   const [senha, setSenha] = useState("");
@@ -30,7 +32,7 @@ const Register = () => {
 
   return (
 
-    <div>
+    <div className="register-wrapper">
       <h1 className='title'>Novo Usuário</h1>
       <div className='around-form-div'>
         <div className='form-div'>
@@ -80,7 +82,6 @@ const Register = () => {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Password"
               />
             </FormControl>
             <FormControl fullWidth variant="outlined">
@@ -107,7 +108,6 @@ const Register = () => {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Password"
               />
               <div className="btn">
                 <PurpleButton

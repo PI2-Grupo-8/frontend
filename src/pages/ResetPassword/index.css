@@ -1,3 +1,37 @@
 .MuiGrid-container {
   padding: 0 200px;
 }
+
+.reset-password-wrapper form {
+  border-radius: 8px;  
+  border: 1px solid #5603AD;
+  width: 543px;
+  padding: 38px 41px 38px;
+}
+
+
+.reset-password-wrapper input#outlined-adornment-password {
+  padding: 8px 14px !important;
+}
+
+.reset-password-wrapper .btn{
+  width: unset;
+  display: flex;
+  justify-content: center;
+  margin-top: 55px;
+}
+.reset-password-wrapper .btn{
+  width: unset;
+  display: flex;
+  justify-content: center;
+  margin-top: 55px;
+}
+
+.reset-password-wrapper  h3{
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height */
+  margin: 0 0 26px;
+  color: #5603AD;
+  font-weight: normal;
+}
