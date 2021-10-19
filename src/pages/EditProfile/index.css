@@ -1,3 +1,35 @@
-.MuiGrid-container {
+.edit-profile-wrapper .MuiGrid-container {
   padding: 0 200px;
+}
+.edit-profile-wrapper .MuiFormControl-root{
+  min-width: 100% !important;
+}
+
+.edit-profile-wrapper .title{
+  margin: 112px 0;
+}
+
+.edit-profile-wrapper form{
+  border: 1px solid #5603AD;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 20px 24px
+}
+
+.edit-profile-wrapper h3{
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height */
+  margin: 0 0 26px;
+  color: #5603AD;
+  font-weight: normal;
+}
+
+
+.edit-profile-wrapper .btn {
+  width: unset;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin: 24px 0 0 0;
 }

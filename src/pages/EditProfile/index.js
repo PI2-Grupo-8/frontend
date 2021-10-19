@@ -44,7 +44,7 @@ const EditProfile = () => {
 
 
   return (
-    <div>
+    <div className="edit-profile-wrapper">
       <h1 className='title'>Editar Usuário</h1>
       <div className='around-form-div'>
         <Grid container spacing={2} >
@@ -59,8 +59,6 @@ const EditProfile = () => {
                 onChange={(e) => {
                   setNome(e.target.value)
                 }}
-                multiline
-                maxRows={1}
               />
               <p>E-mail:</p>
               <TextField
@@ -70,8 +68,6 @@ const EditProfile = () => {
                 onChange={(e) => {
                   setEmail(e.target.value)
                 }}
-                multiline
-                maxRows={1}
               />
               <div className="btn">
                 <PurpleButton
@@ -89,6 +85,7 @@ const EditProfile = () => {
                   id="outlined-adornment-password"
                   type={mostrarSenha ? 'text' : 'password'}
                   value={senha}
+                  placeholder="Senha"
                   onChange={(e) => {
                     setSenha(e.target.value)
                   }}

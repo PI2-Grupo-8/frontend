@@ -31,11 +31,11 @@ const LoginForm = () => {
 
   return (
 
-    <div>
+    <div className="loginForm">
       <div className='around-form-div'>
         <div className='form-div'>
           <div className='center'>
-            <img src={`${Logo}`} /></div>
+            <img class="logo" src={`${Logo}`} /></div>
           <form>
             <div className="center" id="email-field">
               <TextField
@@ -46,8 +46,6 @@ const LoginForm = () => {
                 onChange={(e) => {
                   setEmail(e.target.value)
                 }}
-                multiline
-                maxRows={1}
               /></div>
             <div className="center " id="password-field" >
               <FormControl fullWidth variant="outlined">
