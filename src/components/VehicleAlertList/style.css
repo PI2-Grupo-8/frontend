@@ -1,0 +1,35 @@
+.border-container {
+    border-left: 1px solid var(--purple);
+    height: 90vh;
+}
+
+.alerts-container {
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.alerts-container > h2:first-child {
+    margin-bottom: 5%;
+    color: #5603AD;
+}
+
+.alerts-container > .history {
+    margin-bottom: 5%;
+    color: gray;
+}
+
+.separator {
+    background-color: var(--purple);
+    width: 80%;
+    height: 1px;
+    margin: 5%;
+}
+
+@media screen and (max-width: 800px){
+.alerts-container {
+    display: none;
+}
+}

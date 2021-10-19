@@ -11,7 +11,7 @@ import { green, white } from '../../constants/colors';
 const HomePage = () => {
   const [vehicles, setVehicles] = useState([])
   const history = useHistory();
-  const { showSuccessAlert, showErrorAlert } = useAlertContext()
+  const { showErrorAlert } = useAlertContext()
 
   useEffect(() => {
     const getVehiclesList = async () => {
