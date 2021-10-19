@@ -58,6 +58,11 @@
     height: 100vh;
 }
 
+.finish-alert-button:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
 .finish-alert-button > h3 {
     text-align: center;
     color: white;

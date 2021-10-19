@@ -1,153 +1,206 @@
-import React from 'react';
-import { BsGear, BsVolumeUp, BsPower } from "react-icons/bs";
+import React, { useEffect, useState } from 'react';
+import { BsGear, BsVolumeUp } from "react-icons/bs";
 import { FiRefreshCcw } from 'react-icons/fi';
-import Chart from "react-apexcharts";
-import Card from '@mui/material/Card';
+import { useParams } from 'react-router-dom';
+import { IconButton, Button } from "@material-ui/core";
+import { useHistory } from 'react-router-dom';
+
+import moment from 'moment'
 
 import './style.css'
 import Battery from '../../components/Battery';
 import Fertilizer from '../../components/Fertilizer';
-import ActiveAlert from '../../components/Alerts/ActiveAlert';
-import InactiveAlert from '../../components/Alerts/InactiveAlert';
-
-const DescriptionCard = () => (
-    <Card className="card-container">
-        <div className="description">
-            <div className="vehicle-status" />
-            <div className="description-content">
-                <h1>Nome</h1>
-                <h3>Descrição do veiculo</h3>
-            </div>
-        </div>
-        <BsPower onClick={() => {}} className="on-off-icon" />
-    </Card>
-)
-
-const Header = () => (
-    <div className="header-container">
-        <div>
-            <BsGear onClick={() => {}} className="header-icon lateral-space" />
-            <BsVolumeUp onClick={() => {}} className="header-icon" />
-        </div>
-        <div>
-            <span>100%</span>
-            <Battery size={30} color='#5FAD56' className="battery-icon" />
-            <span>63%</span>
-            <Fertilizer />
-        </div>
-    </div>
-)
 
 
-const Charts = () => (
-    <>
-        <h2 className="chart-title">Utilização de Fertilizante</h2>
-        <div>
-            <Chart
-                options={{
-                    markers: {
-                        size: 4,
-                    },
-                    chart: {
-                        id: "basic-bar"
-                    },
-                    xaxis: {
-                        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-                    }
-                }}
-                series={[
-                    {
-                        name: "series-1",
-                        data: [30, 40, 45, 50, 49, 60, 70, 91]
-                    }
-                ]}
-                type="line"
-                width="80%"
-            />
-        </div>
-        <h2 className="chart-title">Utilização de Bateria</h2>
-        <div>
-            <Chart
-                options={{
-                    markers: {
-                        size: 4,
-                    },
-                    chart: {
-                        id: "basic-bar"
-                    },
-                    xaxis: {
-                        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-                    }
-                }}
-                series={[
-                    {
-                        name: "series-1",
-                        data: [30, 40, 45, 50, 49, 60, 70, 91]
-                    }
-                ]}
-                type="line"
-                width="80%"
-            />
-        </div>
-    </>
-)
+import VehicleOnOffCard from '../../components/VehicleOnOffCard';
+import VehicleHeaderInfo from '../../components/VehicleHeaderInfo';
+import VehicleCharts from '../../components/VehicleCharts';
+
+import { getVehicleByID, sendCommand } from '../../services/axios/vehicleService';
+import { useAlertContext } from '../../contexts/alertsContext';
+import { getAlertsByVehicle, getVehiclesData } from '../../services/axios/sensorsDataService';
+import { sensorsData } from '../../constants/sensorsData';
+import { comands } from '../../constants/commands';
+import VehicleAlertList from '../../components/VehicleAlertList';
 
 const ControlPanel = () => {
-    return (
-        <div className="vehicle-container">
-            <div className="vehicle-info" >
-                <Header />
-                <DescriptionCard />
-                <div className="vehicle-info-container-desktop">
-                    <h3 className="vehicle-last-update">Ultima atualização: Hoje ás 06:49 <FiRefreshCcw size={20} color="#5603AD" onClick={() => {}}/></h3>
-                    <div className='fuel-level'>
-                        <span><Battery size={30} color='#5FAD56' className="battery-icon" /><h4>Bateria: 100%</h4></span>
-                        <span><Fertilizer width={30} /><h4>Fertilizante: 60%</h4></span>
-                    </div>
-                    <h2>Distância</h2>
-                    <h3>Ultima distância percorrida: 1km</h3>
-                    <br />
-                    <h2>Fertilizante: Exemplo</h2>
-                    <h3>Quantidade de uso por planta: 10ml</h3>
-                </div>
-                <div className="vehicle-info-container-mobile">
-                    <h3>Ultima distância percorrida: 1km</h3>
-                    <h3 className="vehicle-last-update">Ultima atualização: Hoje ás 06:49 <FiRefreshCcw size={20} color="#5603AD" onClick={() => {}}/></h3>
-                    <div className="separator" />
-                    <h2>Fertilizante: Exemplo</h2>
-                    <h3>Quantidade de uso por planta: 10ml</h3>
-                </div>
-            </div>
-            <div className="charts-container">
-                <div className="header-desktop">
-                    <h4 onClick={() => {}}><BsGear className="header-icon lateral-space" /> Configurações</h4>
-                    <h4 onClick={() => {}}><BsVolumeUp className="header-icon" /> Emitir sinal sonoro</h4>
-                </div>
-                <Charts />
-            </div>
-            <div className="alerts-container">
-                <h2>Alertas</h2>
-                <ActiveAlert alert={{
-                    type: 'stuck_vehicle',
-                    createdAt: new Date()
-                }} />
-                <ActiveAlert alert={{
-                    type: 'stuck_vehicle',
-                    createdAt: new Date()
-                }} />
-                <div className="separator" />
-                <h2 className="history">Histórico de Alertas</h2>
-                <InactiveAlert alert={{
-                    type: 'stuck_vehicle',
-                    createdAt: new Date()
-                }}/>
-                <InactiveAlert alert={{
-                    type: 'stuck_vehicle',
-                    createdAt: new Date()
-                }}/>
-            </div>
+  moment.locale("pt-br");
+
+  const [vehicle, setVehicle] = useState({name: 'Name', description: 'Description', fertilizer: 'a'})
+  const [alerts, setAlerts] = useState([])
+  const [alertHistory, setAlertHistory] = useState([])
+  const [lastUpdate, setLastUpdate] = useState(null)
+  const [battery, setBattery] = useState(null)
+  const [fertilizer, setFertilizer] = useState(null)
+  const [distance, setDistance] = useState(0)
+
+  const { id } = useParams();
+  const { showErrorAlert, showSuccessAlert } = useAlertContext()
+  const history = useHistory();
+
+  const updateAllData = async () => {
+    await getVehicle();
+    await getSensorsData(sensorsData.BATTERY, setBattery)
+    await getSensorsData(sensorsData.FERTILIZER, setFertilizer)
+    await getSensorsData(sensorsData.DISTANCE, setDistance)
+    await updateAlerts()
+  }
+
+  const updateAlerts = async () => {
+    await getActiveAlerts();
+    await getInactiveAlerts();
+  }
+
+  const updateDate = (newDate) => {
+    if (lastUpdate === null || moment(newDate).isAfter(lastUpdate))
+      setLastUpdate(newDate);
+  }
+
+  const getActiveAlerts = async () => {
+    const request = await getAlertsByVehicle(id)
+    if (request.success) {
+      setAlerts(request.data)
+      return
+    }
+    showErrorAlert('Ocorreu um erro ao buscar alertas')
+  }
+
+  const getInactiveAlerts = async () => {
+    const request = await getAlertsByVehicle(id, 'closed')
+    if (request.success) {
+      setAlertHistory(request.data)
+      return
+    }
+    showErrorAlert('Ocorreu um erro ao buscar alertas')
+  }
+
+  const getSensorsData = async (type, setData) => {
+    const request = await getVehiclesData(id, type)
+    if (request.success && request.data.length) {
+      const dataList = request.data
+      const lastData = dataList[dataList.length - 1]
+      setData(lastData.value['$numberDecimal'])
+      updateDate(lastData.createdAt)
+      return
+    }
+    if (!request.success)
+      showErrorAlert('Ocorreu um erro ao buscar dados do veículo');
+  }
+
+  const getVehicle = async () => {
+    const request = await getVehicleByID(id)
+    if (request.success) {
+      setVehicle(request.data)
+      return
+    }
+    showErrorAlert('Ocorreu um erro ao buscar veículo')
+  }
+
+
+  useEffect(() => {
+    const getInfo = async () =>{
+      await updateAllData();
+    }
+    getInfo()
+  }, [])
+
+
+  const showLastUpdate = () => {
+    if (lastUpdate)
+      return moment(lastUpdate).fromNow();
+
+    return 'indisponível'
+  }
+
+  const LastUpdate = () => (
+    <h3 className="vehicle-last-update">
+      Ultima atualização: {showLastUpdate()}
+      <IconButton onClick={updateAllData} >
+        <FiRefreshCcw size={20} color="#5603AD"/>
+      </IconButton>
+    </h3>
+  )
+
+  const FertilizerInfo = () => (
+    <>
+      <h2>Fertilizante: {vehicle.fertilizer}</h2>
+      <h3>Quantidade de uso por planta: {vehicle.fertilizerAmount}ml</h3>
+    </>
+  )
+
+  const soundAlert = async() => {
+    const request = await sendCommand(id, comands.SOUND_ALERT)
+    if (request.success) {
+      showSuccessAlert('Comando enviado!')
+      return
+    }
+    showErrorAlert('Ocorreu um erro ao enviar comando')
+  }
+
+
+  return (
+    <div className="vehicle-container">
+      <div className="vehicle-info" >
+        <VehicleHeaderInfo
+          battery={battery}
+          fertilizer={fertilizer}
+          vehicleID={id}
+          sendSoundAlert={soundAlert}
+        />
+        <VehicleOnOffCard  vehicle={vehicle}/>
+        <div className="vehicle-info-container-desktop">
+          <LastUpdate/>
+          <div className='fuel-level'>
+            <span>
+              <Battery size={30} className="battery-icon" percentage={battery}/>
+              <h4>Bateria: {battery}%</h4>
+            </span>
+            <span>
+              <Fertilizer width={30} percentage={fertilizer}/>
+              <h4>Fertilizante: {fertilizer}%</h4>
+            </span>
+          </div>
+          <h2>Distância</h2>
+          <h3>Ultima distância percorrida: {distance}m</h3>
+          <br />
+          <FertilizerInfo />
         </div>
-    );
+        <div className="vehicle-info-container-mobile">
+          <h3>Ultima distância percorrida: 1km</h3>
+          <LastUpdate />
+          <div className="separator" />
+          <FertilizerInfo/>
+        </div>
+      </div>
+      <div className="charts-container">
+        <div className="header-desktop">
+          <Button
+            startIcon={<BsGear className="header-icon lateral-space" />}
+            onClick={() => history.push(`/vehicle/edit/${id}`)}
+          >
+            <h4 className="conf-button">
+              Configurações
+            </h4>
+          </Button>
+          <Button
+            startIcon={<BsVolumeUp className="header-icon" />}
+            onClick={soundAlert}
+          >
+            <h4 className="conf-button">
+              Emitir sinal sonoro
+            </h4>
+          </Button>
+        </div>
+        <VehicleCharts />
+      </div>
+
+      <VehicleAlertList
+        alerts={alerts}
+        alertHistory={alertHistory}
+        updateAlerts={updateAlerts}
+      />
+    </div>
+  );
 }
 
 export default ControlPanel;

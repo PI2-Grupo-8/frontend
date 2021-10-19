@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import moment from 'moment'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -12,7 +13,7 @@ import './style.css'
 import { BsFillCircleFill } from "react-icons/bs";
 import { GoAlert } from "react-icons/go";
 import Fertilizer from '../Fertilizer';
-import { getActiveAlertsByVehicle, getVehiclesData } from '../../services/axios/sensorsDataServices';
+import { getAlertsByVehicle, getVehiclesData } from '../../services/axios/sensorsDataService';
 import { useAlertContext } from '../../contexts/alertsContext';
 import { getWorkingVehicle } from '../../services/axios/vehicleService';
 
@@ -20,15 +21,16 @@ import { getWorkingVehicle } from '../../services/axios/vehicleService';
 const VehicleCard = ({ vehicle }) =>  {
   moment.locale("pt-br");
   const { showErrorAlert } = useAlertContext()
+  const history = useHistory();
 
   const [alerts, setAlerts] = useState([])
   const [battery, setBattery] = useState(null)
   const [fertilizer, setFertilizer] = useState(null)
   const [working, setWorking] = useState(false)
-  const [lastUpdate, setLastUpdate] = useState(vehicle.updatedAt)
+  const [lastUpdate, setLastUpdate] = useState(null)
 
   const getAlerts = async () => {
-    const request = await getActiveAlertsByVehicle(vehicle._id)
+    const request = await getAlertsByVehicle(vehicle._id)
     if (request.success) {
       setAlerts(request.data)
       return
@@ -37,7 +39,7 @@ const VehicleCard = ({ vehicle }) =>  {
   }
 
   const updateDate = (newDate) => {
-    if (moment(newDate).isAfter(lastUpdate))
+    if (lastUpdate === null || moment(newDate).isAfter(lastUpdate))
       setLastUpdate(newDate);
   }
 
@@ -72,7 +74,10 @@ const VehicleCard = ({ vehicle }) =>  {
   }, [vehicle])
 
   return (
-    <Card sx={{ width: 350, margin: 1, background: purple, color: white }}>
+    <Card
+      sx={{ width: 350, margin: 1, background: purple, color: white }}
+      onClick={() => history.push(`/vehicle/${vehicle._id}`, {vehicle})}
+      >
       <CardActionArea>
         <CardContent>
           <div className="card-header">

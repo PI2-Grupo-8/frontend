@@ -7,9 +7,12 @@ import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { purple } from '../../constants/colors';
+import { useHistory } from 'react-router-dom';
 
 
 const Navbar = () => {
+  const history = useHistory();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" style={{ background: purple }}>
@@ -22,7 +25,7 @@ const Navbar = () => {
             sx={{ mr: 2 }}
           >
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={() => history.push('/')}>
             StrongBerry
           </Typography>
             <div>

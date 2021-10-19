@@ -79,3 +79,38 @@ export const getWorkingVehicle = async (id) => {
     return { success: false, data: error.response };
   }
 }
+
+export const startWork = async (id) => {
+  try {
+    const response = await vehicleAPI.get(`work/create/${id}`)
+    return { success: true, data: response.data }
+  } catch (error) {
+    return { success: false, data: error.response };
+  }
+}
+
+export const finishWork = async (id) => {
+  try {
+    const response = await vehicleAPI.get(`work/finish/${id}`)
+
+    if (!response.data) throw Error;
+
+    return { success: true, data: response.data }
+  } catch (error) {
+    return { success: false, data: error.response };
+  }
+}
+
+export const sendCommand = async (vehicleId, type) => {
+  try {
+    const response = await vehicleAPI.post('/command/create', {
+      vehicleId,
+      type
+    })
+
+    return { success: true, data: response.data }
+  } catch (error) {
+    return { success: false, data: error.response };
+  }
+}
+
