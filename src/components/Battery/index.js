@@ -5,18 +5,19 @@ import {
   FaBatteryQuarter,
   FaBatteryThreeQuarters
 } from "react-icons/fa";
+import { green, red } from '../../constants/colors';
 
-const Battery = ({ percentage, color }) => {
-  if(percentage < 25)
-    return <FaBatteryEmpty color={color} size={20} />
-  if(percentage < 50)
-    return <FaBatteryQuarter color={color} size={20} />
-  if(percentage < 75)
-    return <FaBatteryHalf color={color} size={20} />
-  if(percentage < 100)
-    return <FaBatteryThreeQuarters color={color} size={20} />
+const Battery = ({ percentage, size = 20, ...rest }) => {
+  if (percentage < 25)
+    return <FaBatteryEmpty color={red} size={size} {...rest} />
+  if (percentage < 50)
+    return <FaBatteryQuarter color={green} size={size} {...rest} />
+  if (percentage < 75)
+    return <FaBatteryHalf color={green} size={size} {...rest} />
+  if (percentage < 100)
+    return <FaBatteryThreeQuarters color={green} size={size} {...rest} />
   else
-    return <FaBatteryFull color={color} size={20} />
+    return <FaBatteryFull color={green} size={size} {...rest} />
 }
 
 export default Battery;

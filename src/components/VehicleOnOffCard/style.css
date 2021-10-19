@@ -1,0 +1,31 @@
+.card-container {
+  margin: 5px;
+  border: 1px solid var(--purple);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.vehicle-status {
+  background-color: var(--green);
+  height: 20px;
+  width: 20px;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+
+
+.description-content > h1, .description-content > h3 {
+  margin: 5px;
+  color: var(--purple);
+  font-weight: initial;
+}
+
+.on-off-icon {
+  font-size: 45px;
+  font-weight: bold;
+  margin: 10px;
+  color: var(--purple);
+}
+

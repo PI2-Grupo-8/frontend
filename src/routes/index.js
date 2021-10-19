@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar';
 import Homepage from '../pages/HomePage'
 import CreateVehicle from '../pages/CreateVehicle'
 import UpdateVehicle from '../pages/UpdateVehicle'
+import ControlPanel from '../pages/ControlPanel';
+import Alerts from '../pages/Alerts';
 import './style.css'
 import Register from '../pages/Register';
 import { isAuthenticated } from '../services/auth';
@@ -41,15 +43,17 @@ const Routes = () => {
   return (
     <div className="page">
       <BrowserRouter>
-      <Navbar />
+        <Navbar />
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/signup" exact component={Register} />
           <PublicOnlyRoute path="/forgotpassword" exact component={ForgotPassword} />
           <PublicOnlyRoute path="/auth/reset_password" exact component={ResetPassword} />
           <PrivateRoute path="/profile" exact Component={EditProfile} />
+          <PrivateRoute path="/vehicle/:id" exact component={ControlPanel} />
           <PrivateRoute path="/vehicle/create" exact Component={CreateVehicle} />
           <PrivateRoute path="/vehicle/edit/:id" exact Component={UpdateVehicle} />
+          <PrivateRoute path="/alerts" exact component={Alerts} />
         </Switch>
       </BrowserRouter>
     </div>
