@@ -35,6 +35,7 @@ const ControlPanel = () => {
   const [distance, setDistance] = useState(0)
   const [fertilizerGraph, setFertilizerGraph] = useState([])
   const [batteryGraph, setBatteryGraph] = useState([])
+  const [toggleCharts, setToggleCharts] = useState('day')
 
   const { id } = useParams();
   const { showErrorAlert, showSuccessAlert } = useAlertContext()
@@ -100,17 +101,18 @@ const ControlPanel = () => {
     showErrorAlert('Ocorreu um erro ao buscar veículo')
   }
 
-  const getGraphByType = async (type, setData) => {
-    const request = await getGraph(id, type)
+  const getGraphByType = async (type, setData, period) => {
+    const request = await getGraph(id, type, period)
     if (request.success) {
       setData(request.data)
       return
     }
     showErrorAlert('Ocorreu um erro ao buscar grafico')
   }
-  const getGraphs = async () => {
-    await getGraphByType(sensorsData.FERTILIZER, setFertilizerGraph)
-    await getGraphByType(sensorsData.BATTERY, setBatteryGraph)
+  const getGraphs = async (period = 'day') => {
+    setToggleCharts(period)
+    await getGraphByType(sensorsData.FERTILIZER, setFertilizerGraph, period)
+    await getGraphByType(sensorsData.BATTERY, setBatteryGraph, period)
   }
 
 
@@ -208,7 +210,12 @@ const ControlPanel = () => {
             </h4>
           </Button>
         </div>
-        <VehicleCharts fertilizerGraph={fertilizerGraph} batteryGraph={batteryGraph}/>
+        <VehicleCharts
+          fertilizerGraph={fertilizerGraph}
+          batteryGraph={batteryGraph}
+          updateCharts={getGraphs}
+          toggle={toggleCharts}
+        />
       </div>
 
       <VehicleAlertList

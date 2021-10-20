@@ -62,9 +62,9 @@ export const closeAlert = async (id) => {
   }
 }
 
-export const getGraph = async (id, type) => {
+export const getGraph = async (id, type, period = 'day') => {
   try {
-    const response = await sensorsDataAPI.get(`/data/graph/${id}/${type}`)
+    const response = await sensorsDataAPI.get(`/data/graph/${id}/${type}/?period=${period}`)
 
     return { success: true, data: response.data }
   } catch (error) {

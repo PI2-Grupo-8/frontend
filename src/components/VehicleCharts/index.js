@@ -1,8 +1,9 @@
 import Chart from "react-apexcharts";
 import './style.css'
 import moment from 'moment'
+import ToggleGraphPeriod from '../../components/ToggleGraphPeriod'
 
-const VehicleCharts = ({ fertilizerGraph, batteryGraph }) => {
+const VehicleCharts = ({ fertilizerGraph, batteryGraph, updateCharts, toggle }) => {
   moment.locale("pt-br");
 
   const chartOptions = {
@@ -37,7 +38,8 @@ const VehicleCharts = ({ fertilizerGraph, batteryGraph }) => {
   }
 
   return (
-    <div>
+    <div className="chart-container">
+      <ToggleGraphPeriod toggle={toggle} onChange={updateCharts}/>
       <h2 className="chart-title">Utilização de Fertilizante</h2>
       <div>
         <Chart
@@ -49,7 +51,7 @@ const VehicleCharts = ({ fertilizerGraph, batteryGraph }) => {
             }
           ]}
           type="line"
-          width="80%"
+          width="100%"
         />
       </div>
       <h2 className="chart-title">Utilização de Bateria</h2>
@@ -63,7 +65,7 @@ const VehicleCharts = ({ fertilizerGraph, batteryGraph }) => {
             }
           ]}
           type="line"
-          width="80%"
+          width="100%"
         />
       </div>
     </div>

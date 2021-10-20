@@ -1,0 +1,9 @@
+.toggle-box{
+  padding: 5px !important;
+}
+
+.toggle-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}

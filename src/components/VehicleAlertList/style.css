@@ -29,7 +29,10 @@
 }
 
 @media screen and (max-width: 800px){
-.alerts-container {
-    display: none;
-}
+    .alerts-container {
+        display: none;
+    }
+    .border-container {
+        display: none;
+    }
 }
