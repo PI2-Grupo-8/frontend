@@ -50,8 +50,8 @@ const Routes = () => {
           <PublicOnlyRoute path="/forgotpassword" exact component={ForgotPassword} />
           <PublicOnlyRoute path="/auth/reset_password" exact component={ResetPassword} />
           <PrivateRoute path="/profile" exact Component={EditProfile} />
-          <PrivateRoute path="/vehicle/:id" exact component={ControlPanel} />
           <PrivateRoute path="/vehicle/create" exact Component={CreateVehicle} />
+          <PrivateRoute path="/vehicle/:id" exact component={ControlPanel} />
           <PrivateRoute path="/vehicle/edit/:id" exact Component={UpdateVehicle} />
           <PrivateRoute path="/alerts" exact component={Alerts} />
         </Switch>
