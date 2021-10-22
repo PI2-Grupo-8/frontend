@@ -1,0 +1,39 @@
+.loginForm #email-field{
+  margin-bottom: 36px;
+}
+  
+.loginForm  .logo{
+  height: 300px;
+}
+
+.loginForm  .MuiFormControl-root, .MuiButton-root   {
+  border-radius: 8px;
+  max-width: 298px;
+}
+
+.loginForm form{
+  margin-top: -32px;
+}
+
+.loginForm .center{
+  display: flex;
+  justify-content: center;
+}
+.loginForm .MuiButton-textPrimary{
+  margin-top: 32px;
+}
+
+.loginForm .register-btn .MuiButton-root {
+  color: #8367C7;
+  margin-top: 16px;
+  border: 1px solid #8367C7;
+}
+
+.loginForm .forgot-password{
+  color: #8367C7;
+  margin-top: 16px;
+}
+
+.loginForm #password-field{
+  margin-bottom: 32px;
+}

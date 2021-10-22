@@ -1,0 +1,15 @@
+.register-wrapper .css-8ewcdo-MuiInputBase-root-MuiOutlinedInput-root,
+.register-wrapper .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+  padding: 8px 14px;
+}
+
+.register-wrapper form {
+  margin-top: 60px;
+}
+
+.register-wrapper .btn{
+  display: flex;
+  justify-content: flex-end;
+  width: unset;
+  margin: 24px 0;
+}

@@ -1,11 +1,13 @@
 import { vehicleAPI } from './baseServices';
+import { getUser } from '../../services/auth';
 
 export const createVehicle = async (
   name, description, fertilizer, fertilizerAmount, code
 ) => {
   try {
+    const user = getUser()
     const response = await vehicleAPI.post('vehicle/create', {
-      owner: "61411790de1c603fc8596ea9",
+      owner: user._id,
       code,
       name,
       description,
@@ -34,8 +36,9 @@ export const updateVehicle = async (
   id, name, description, fertilizer, fertilizerAmount, code
 ) => {
   try {
+    const user = getUser()
     const response = await vehicleAPI.put(`vehicle/update/${id}`, {
-      owner: "61411790de1c603fc8596ea9",
+      owner: user._id,
       code,
       name,
       description,
@@ -58,9 +61,9 @@ export const deleteVehicle = async (id) => {
 }
 
 export const getVehiclesByUser = async () => {
-  const userID = "61411790de1c603fc8596ea9"
   try {
-    const response = await vehicleAPI.get(`vehicles/owner/${userID}`)
+    const user = getUser()
+    const response = await vehicleAPI.get(`vehicles/owner/${user._id}`)
 
     if (!response.data) throw Error;
 
