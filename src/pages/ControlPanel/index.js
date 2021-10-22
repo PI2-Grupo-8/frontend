@@ -18,7 +18,7 @@ import VehicleCharts from '../../components/VehicleCharts';
 
 import { getVehicleByID, sendCommand } from '../../services/axios/vehicleService';
 import { useAlertContext } from '../../contexts/alertsContext';
-import { getAlertsByVehicle, getVehiclesData } from '../../services/axios/sensorsDataService';
+import { getAlertsByVehicle, getVehiclesData, getGraph } from '../../services/axios/sensorsDataService';
 import { sensorsData } from '../../constants/sensorsData';
 import { comands } from '../../constants/commands';
 import VehicleAlertList from '../../components/VehicleAlertList';
@@ -26,13 +26,16 @@ import VehicleAlertList from '../../components/VehicleAlertList';
 const ControlPanel = () => {
   moment.locale("pt-br");
 
-  const [vehicle, setVehicle] = useState({name: 'Name', description: 'Description', fertilizer: 'a'})
+  const [vehicle, setVehicle] = useState(null)
   const [alerts, setAlerts] = useState([])
   const [alertHistory, setAlertHistory] = useState([])
   const [lastUpdate, setLastUpdate] = useState(null)
   const [battery, setBattery] = useState(null)
   const [fertilizer, setFertilizer] = useState(null)
   const [distance, setDistance] = useState(0)
+  const [fertilizerGraph, setFertilizerGraph] = useState([])
+  const [batteryGraph, setBatteryGraph] = useState([])
+  const [toggleCharts, setToggleCharts] = useState('day')
 
   const { id } = useParams();
   const { showErrorAlert, showSuccessAlert } = useAlertContext()
@@ -43,6 +46,8 @@ const ControlPanel = () => {
     await getSensorsData(sensorsData.BATTERY, setBattery)
     await getSensorsData(sensorsData.FERTILIZER, setFertilizer)
     await getSensorsData(sensorsData.DISTANCE, setDistance)
+    await getGraphs()
+
     await updateAlerts()
   }
 
@@ -96,6 +101,20 @@ const ControlPanel = () => {
     showErrorAlert('Ocorreu um erro ao buscar veículo')
   }
 
+  const getGraphByType = async (type, setData, period) => {
+    const request = await getGraph(id, type, period)
+    if (request.success) {
+      setData(request.data)
+      return
+    }
+    showErrorAlert('Ocorreu um erro ao buscar grafico')
+  }
+  const getGraphs = async (period = 'day') => {
+    setToggleCharts(period)
+    await getGraphByType(sensorsData.FERTILIZER, setFertilizerGraph, period)
+    await getGraphByType(sensorsData.BATTERY, setBatteryGraph, period)
+  }
+
 
   useEffect(() => {
     const getInfo = async () =>{
@@ -123,8 +142,8 @@ const ControlPanel = () => {
 
   const FertilizerInfo = () => (
     <>
-      <h2>Fertilizante: {vehicle.fertilizer}</h2>
-      <h3>Quantidade de uso por planta: {vehicle.fertilizerAmount}ml</h3>
+      <h2>Fertilizante: {vehicle?.fertilizer}</h2>
+      <h3>Quantidade de uso por planta: {vehicle?.fertilizerAmount}ml</h3>
     </>
   )
 
@@ -166,7 +185,7 @@ const ControlPanel = () => {
           <FertilizerInfo />
         </div>
         <div className="vehicle-info-container-mobile">
-          <h3>Ultima distância percorrida: 1km</h3>
+          <h3>Ultima distância percorrida: {distance}m</h3>
           <LastUpdate />
           <div className="separator" />
           <FertilizerInfo/>
@@ -191,7 +210,12 @@ const ControlPanel = () => {
             </h4>
           </Button>
         </div>
-        <VehicleCharts />
+        <VehicleCharts
+          fertilizerGraph={fertilizerGraph}
+          batteryGraph={batteryGraph}
+          updateCharts={getGraphs}
+          toggle={toggleCharts}
+        />
       </div>
 
       <VehicleAlertList

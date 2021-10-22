@@ -14,7 +14,7 @@ const VehicleOnOffCard = ({ vehicle }) => {
 
   useEffect(() => {
     const getWorkData = async () => {
-      const request = await getWorkingVehicle(vehicle._id)
+      const request = await getWorkingVehicle(vehicle?._id)
       if (request.success) {
         setWorking(request.data.length > 0)
         return
@@ -25,7 +25,7 @@ const VehicleOnOffCard = ({ vehicle }) => {
   }, [vehicle])
 
   const turnOnOff = async () => {
-    const request = working ? await finishWork(vehicle._id) : await startWork(vehicle._id)
+    const request = working ? await finishWork(vehicle?._id) : await startWork(vehicle?._id)
 
     if (request.success) {
       setWorking(request.data.finishedAt === null);
@@ -39,8 +39,8 @@ const VehicleOnOffCard = ({ vehicle }) => {
       <div className="description">
         <BsFillCircleFill color={working ? green : red} />
         <div className="description-content">
-          <h1>{vehicle.name}</h1>
-          <h3>{vehicle.description}</h3>
+          <h1>{vehicle?.name}</h1>
+          <h3>{vehicle?.description}</h3>
         </div>
       </div>
       <IconButton onClick={turnOnOff}>
