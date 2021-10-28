@@ -33,3 +33,13 @@
   justify-content: flex-end;
   margin: 24px 0 0 0;
 }
+
+@media only screen and (max-width: 768px){
+  .edit-profile-wrapper .MuiGrid-container {
+    padding: 5%;
+    padding-top: 0;
+  }
+  .edit-profile-wrapper .title{
+    margin: 5%;
+  }
+}

@@ -13,3 +13,16 @@
   width: unset;
   margin: 24px 0;
 }
+
+
+@media only screen and (max-width: 768px){
+  .form-div {
+    width: 90%;
+  }
+  .title {
+    padding-left: 5%;
+  }
+  .register-wrapper form {
+    margin-top: 0;
+  }
+}
