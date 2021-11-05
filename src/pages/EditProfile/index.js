@@ -32,8 +32,8 @@ const EditProfile = () => {
     showErrorAlert('Ocorreu um erro ao atualizar o usuário')
   }
   const savePassword = async () => {
-    saveUserInfo(request.data);
     const request = await updateUser({ password: senha });
+    saveUserInfo(request.data);
     if (request.success) {
       showSuccessAlert('Usuário atualizado.')
       history.push('/')
